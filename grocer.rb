@@ -1,24 +1,24 @@
 require 'pry'
 def consolidate_cart(cart)
-  new_hash=cart.uniq
-  new_hash.each do |array|
-    array.each do |item,details|
-      cart.each do |array_with_repetition|
-       array_with_repetition.each do |item2,details2|
-       count=0
-          if !array[item].has_key?(:count)
-            count=0
-            array[item][:count]=count
-          
-          elsif item2==item
-            count=count+1
-            array[item][:count]=count
-            end
-        end
-      end
+  hash_w_rep=[]
+  cart.each do |array1|
+    hash_w_rep=(hash_w_rep.push(array1.keys)).flatten
+    binding.pry
   end
-end
-binding.pry
+ new_hash=cart.uniq
+ new_hash.each do |array|
+   array.each do |name, value|
+      array[name][:count]=0
+     end
+   end
+   
+   new_hash.each do |array|
+   array.each do |name, value|
+     array[name][:count]+=hash_w_rep.count(name)
+      
+   end
+ end
+
 return new_hash
 end
 
