@@ -18,6 +18,7 @@ def consolidate_cart(cart)
         end
       end
     end
+    binding.pry
 return new_hash
 end
 
